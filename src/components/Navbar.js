@@ -56,7 +56,6 @@ class Navbar extends React.Component {
 	}
 
 	render() {
-		console.log(this.props)
 		const color =
 			this.props.location.pathname === '/'
 				? 'transparent'

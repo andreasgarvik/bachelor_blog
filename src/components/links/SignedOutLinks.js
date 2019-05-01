@@ -9,7 +9,7 @@ const SignedOutLinks = () => {
 					to='/signIn'
 					className='btn btn-floating light-blue lighten-1 '
 				>
-					<i class='material-icons'>person</i>
+					<i className='material-icons'>person</i>
 				</NavLink>
 			</li>
 		</ul>

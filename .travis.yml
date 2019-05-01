@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t andreasgarvik/siamawanders -f Dockerfile.dev .
+
+script:
+  - docker run andreasgarvik/siamawanders npm run test -- --coverage
