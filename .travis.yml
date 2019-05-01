@@ -1,8 +1,11 @@
 sudo: required
+language: node_js
+node_js:
+  - '8'
 services:
   - docker
 
 before_install:
   - docker build -t andreasgarvik/siamawanders -f Dockerfile.dev .
-#script:
-#  - docker run andreasgarvik/siamawanders npm run test -- --coverage
+script:
+  - docker run andreasgarvik/siamawanders npm run test -- --coverage
