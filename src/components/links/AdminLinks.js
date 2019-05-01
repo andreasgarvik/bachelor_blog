@@ -5,7 +5,9 @@ const AdminLinks = () => {
 	return (
 		<ul id='nav-mobile' className='left hide-on-med-and-down'>
 			<li>
-				<NavLink to='/create'>New BlogPost</NavLink>
+				<NavLink className='grey-text' to='/create'>
+					New BlogPost
+				</NavLink>
 			</li>
 		</ul>
 	)

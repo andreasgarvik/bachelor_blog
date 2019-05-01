@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
 import HomeScreen from './components/HomeScreen'
 import BlogPostDetails from './components/blog/BlogPostDetails'
 import SignIn from './components/auth/SignIn'
@@ -22,7 +21,6 @@ class App extends React.Component {
 				<div className='App Site'>
 					<div className='Site-content'>
 						<div className='main'>
-							<Navbar />
 							<Switch>
 								<Route exact path='/' component={HomeScreen} />
 								<Route path='/blogposts/:id' component={BlogPostDetails} />

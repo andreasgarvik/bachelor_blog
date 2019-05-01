@@ -1,9 +1,11 @@
 import React from 'react'
-import BlogPostsLink from './blog/BlogPostsList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import Loader from './Loader'
 import M from 'materialize-css'
+import BlogPostsList from './blog/BlogPostsList'
+import Navbar from './Navbar'
 
 class HomeScreen extends React.Component {
 	componentDidMount = () => {
@@ -13,6 +15,7 @@ class HomeScreen extends React.Component {
 	render() {
 		return (
 			<>
+				<Navbar location={this.props.history.location} />
 				<div className='parallax-container'>
 					<div className='parallax'>
 						<img
@@ -26,7 +29,11 @@ class HomeScreen extends React.Component {
 					<div className='container'>
 						<div className='row'>
 							<h5>Recent Blog Posts</h5>
-							<BlogPostsLink blogposts={this.props.blogposts} />
+							{this.props.blogposts ? (
+								<BlogPostsList blogposts={this.props.blogposts} />
+							) : (
+								<Loader />
+							)}
 						</div>
 					</div>
 				</div>

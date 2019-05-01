@@ -23,6 +23,7 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 		title,
 		content,
 		imageRefs,
+		score: 0,
 		auther: profile.name,
 		timestamp: Date.now()
 	})

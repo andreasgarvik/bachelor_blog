@@ -23,7 +23,74 @@
 	visibility: hidden;
 }
 
-/* .navbar-fixed {
-	position: absolute;
-	z-index: 1000;
-} */
+@media screen and (max-width: 400px) {
+	.parallax-container {
+		height: 200px;
+	}
+}
+@media screen and (min-width: 400px) and (max-width: 500px) {
+	.parallax-container {
+		height: 250px;
+	}
+}
+
+@media screen and (min-width: 500px) and (max-width: 600px) {
+	.parallax-container {
+		height: 300px;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 700px) {
+	.parallax-container {
+		height: 350px;
+	}
+}
+
+@media screen and (min-width: 700px) and (max-width: 800px) {
+	.parallax-container {
+		height: 400px;
+	}
+}
+@media screen and (min-width: 800px) and (max-width: 950px) {
+	.parallax-container {
+		height: 450px;
+	}
+}
+
+@media screen and (min-width: 950px) and (max-width: 1100px) {
+	.parallax-container {
+		height: 550px;
+	}
+}
+@media screen and (min-width: 1100px) and (max-width: 1200px) {
+	.parallax-container {
+		height: 600px;
+	}
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+	.parallax-container {
+		height: 650px;
+	}
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1600px) {
+	.parallax-container {
+		height: 700px;
+	}
+}
+@media screen and (min-width: 1600px) and (max-width: 1800px) {
+	.parallax-container {
+		height: 800px;
+	}
+}
+
+@media screen and (min-width: 1800px) and (max-width: 2160px) {
+	.parallax-container {
+		height: 900px;
+	}
+}
+
+.nav-wrapper {
+	z-index: 1;
+}

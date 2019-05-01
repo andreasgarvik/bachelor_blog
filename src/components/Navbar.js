@@ -55,9 +55,18 @@ class Navbar extends React.Component {
 	}
 
 	render() {
+		console.log(this.props)
+		const color =
+			this.props.location.pathname === '/'
+				? 'transparent'
+				: 'blue-grey darken-1'
+		const position = this.props.location.pathname === '/' ? 'absolute' : ''
 		return (
-			<div class='navbar-fixed'>
-				<nav className={`nav-wrapper blue-grey darken-1 z-depth-0`}>
+			<>
+				<nav
+					style={{ position: position }}
+					className={`nav-wrapper ${color} z-depth-0`}
+				>
 					<div className='container'>
 						<Link to='/' className='brand-logo center'>
 							SiamaWanders
@@ -71,7 +80,7 @@ class Navbar extends React.Component {
 				<ul className='sidenav light-blue lighten-1' id='mobile-nav'>
 					{this.renderLinksMobile()}
 				</ul>
-			</div>
+			</>
 		)
 	}
 }
