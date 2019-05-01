@@ -1,3 +1,3 @@
 ## SiamaWanders
 
-This is a travel blog from scratch :rocket
+This is a travel blog from scratch :rocket:
