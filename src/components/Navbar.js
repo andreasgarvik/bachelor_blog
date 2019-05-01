@@ -9,6 +9,7 @@ import SignedOutLinksMobile from './linksMobile/SignedOutLinks'
 import AdminLinksMobile from './linksMobile/AdminLinks'
 import UserLinksMobile from './linksMobile/UserLinks'
 import { connect } from 'react-redux'
+//import Logo from '../icons/SiamaWanders-logo.png'
 import M from 'materialize-css'
 
 class Navbar extends React.Component {

@@ -6,6 +6,8 @@ import Loader from './Loader'
 import M from 'materialize-css'
 import BlogPostsList from './blog/BlogPostsList'
 import Navbar from './Navbar'
+import BackgroundImage1 from '../images/DSC_0004.jpg'
+import BackgroundImage2 from '../images/DSC_0079.jpg'
 
 class HomeScreen extends React.Component {
 	componentDidMount = () => {
@@ -18,11 +20,7 @@ class HomeScreen extends React.Component {
 				<Navbar location={this.props.history.location} />
 				<div className='parallax-container'>
 					<div className='parallax'>
-						<img
-							className='responsive-img'
-							src='https://firebasestorage.googleapis.com/v0/b/siamawandersblog.appspot.com/o/DSC_0004.jpg?alt=media&token=5cbe98c8-76c9-48e7-8866-15529e5413fd'
-							alt=''
-						/>
+						<img className='responsive-img' src={BackgroundImage1} alt='' />
 					</div>
 				</div>
 				<div className='section white'>
@@ -39,11 +37,7 @@ class HomeScreen extends React.Component {
 				</div>
 				<div className='parallax-container'>
 					<div className='parallax'>
-						<img
-							className='responsive-img'
-							src='https://firebasestorage.googleapis.com/v0/b/siamawandersblog.appspot.com/o/DSC_0079.JPG?alt=media&token=7bebd5e4-f41f-4c6c-ab00-4e66c9a10337'
-							alt=''
-						/>
+						<img className='responsive-img' src={BackgroundImage2} alt='' />
 					</div>
 				</div>
 			</>
