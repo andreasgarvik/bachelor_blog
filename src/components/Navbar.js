@@ -67,7 +67,7 @@ class Navbar extends React.Component {
 					style={{ position: position }}
 					className={`nav-wrapper ${color} z-depth-0`}
 				>
-					<div className='container'>
+					<div style={{ width: '80%' }} className='container'>
 						<Link to='/' className='brand-logo center'>
 							SiamaWanders
 						</Link>

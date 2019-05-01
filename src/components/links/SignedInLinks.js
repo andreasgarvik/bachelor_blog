@@ -7,12 +7,11 @@ const SignedInLinks = props => {
 	return (
 		<ul id='nav-mobile' className='right hide-on-med-and-down'>
 			<li>
-				<NavLink to='/' onClick={() => props.signOut()}>
-					Log Out
-				</NavLink>
-			</li>
-			<li>
-				<NavLink to='/' className='btn btn-floating light-blue lighten-1'>
+				<NavLink
+					to='/'
+					onClick={() => props.signOut()}
+					className='btn btn-floating light-blue lighten-1 '
+				>
 					{props.profile.initials}
 				</NavLink>
 			</li>

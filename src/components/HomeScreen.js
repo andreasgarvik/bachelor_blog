@@ -20,7 +20,7 @@ class HomeScreen extends React.Component {
 					<div className='parallax'>
 						<img
 							className='responsive-img'
-							src='https://firebasestorage.googleapis.com/v0/b/siamawandersblog.appspot.com/o/DSC_0004.JPG?alt=media&token=7eba60cc-7db7-4f07-922b-3ed7c1460c14'
+							src='https://firebasestorage.googleapis.com/v0/b/siamawandersblog.appspot.com/o/DSC_0004.jpg?alt=media&token=5cbe98c8-76c9-48e7-8866-15529e5413fd'
 							alt=''
 						/>
 					</div>
