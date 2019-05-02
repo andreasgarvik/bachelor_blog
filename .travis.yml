@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '11'
+  - '8'
 script:
-  - npm run test -- --watchAll=false
+  - npm run test --forceExit --detectOpenHandles --maxWorkers=10
   - npm run build
