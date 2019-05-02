@@ -8,4 +8,4 @@ services:
 before_install:
   - docker build -t andreasgarvik/siamawanders -f Dockerfile.dev .
 script:
-  - docker run -e CI=true andreasgarvik/siamawanders npm run test --forceExit --watchAll=false
+  - docker run andreasgarvik/siamawanders npm run test --forceExit --detectOpenHandles --maxWorkers=10
