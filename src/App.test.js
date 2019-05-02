@@ -33,8 +33,3 @@ it('renders without crashing', () => {
 	)
 	ReactDOM.unmountComponentAtNode(div)
 })
-
-afterAll(async done => {
-	store.firestore.unsetListener({ collection: 'blogposts' })
-	done()
-})
