@@ -2,5 +2,5 @@ language: node_js
 node_js:
   - '11'
 script:
-  - npm test --forceExit
+  - npm run test -- --watchAll=false
   - npm run build
