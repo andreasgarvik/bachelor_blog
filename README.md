@@ -1,8 +1,8 @@
-## SiamaWanders 
+# SiamaWanders :building_construction:
 
 <p align="center">
-	<a href="https://travis-ci.com/180312/siamawandersr">
-		<img src="https://travis-ci.com/180312/siamawanders.svg?branch=master&style=flat-square"
+	<a href="https://travis-ci.com/180312/siamawanders">
+		<img src="https://img.shields.io/travis/180312/gitmoji.svg?style=flat-square"
 			 alt="Build Status">
 	</a>
 	<a href="https://gitmoji.carloscuesta.me">
