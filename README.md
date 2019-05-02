@@ -7,4 +7,4 @@
 
 # SiamaWanders :building_construction:
 
-This is a travel blog from scratch :rocket:
+A travel blog from scratch :rocket:
