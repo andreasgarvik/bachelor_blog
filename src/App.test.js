@@ -23,7 +23,7 @@ const store = createStore(
 	)
 )
 
-it('renders without crashing', () => {
+it('renders without crashing', async done => {
 	const div = document.createElement('div')
 	ReactDOM.render(
 		<Provider store={store}>
@@ -32,4 +32,10 @@ it('renders without crashing', () => {
 		div
 	)
 	ReactDOM.unmountComponentAtNode(div)
+	done()
+})
+
+afterAll(async done => {
+	store.firestore.unsetListener({ collection: 'cities' })
+	done()
 })
