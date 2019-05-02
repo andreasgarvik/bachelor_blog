@@ -2,7 +2,7 @@
 
 <p align="center">
 	<a href="https://travis-ci.com/180312/siamawandersr">
-		<img src="https://travis-ci.com/180312/siamawanders.svg?branch=master"
+		<img src="https://travis-ci.com/180312/siamawanders.svg?branch=master&style=flat-square"
 			 alt="Build Status">
 	</a>
 	<a href="https://gitmoji.carloscuesta.me">
