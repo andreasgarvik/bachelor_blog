@@ -5,5 +5,5 @@ cache:
   directories:
     - node_modules
 script:
-  - npm test --detectOpenHandles
+  - npm test --forceExit
   - npm run build
