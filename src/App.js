@@ -1,10 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import HomeScreen from './components/HomeScreen'
+import HomeScreen from './components/ui/HomeScreen'
 import BlogPostDetails from './components/blog/BlogPostDetails'
 import SignIn from './components/auth/SignIn'
 import CreateBlogPost from './components/blog/CreateBlogPost'
-import Footer from './components/Footer'
+import EditBlogPost from './components/blog/EditBlogPost'
+import Footer from './components/ui/Footer'
 import ScrollToTop from './utils/ScrollToTop'
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
 									<Route path='/blogposts/:id' component={BlogPostDetails} />
 									<Route path='/signin' component={SignIn} />
 									<Route path='/create' component={CreateBlogPost} />
+									<Route path='/edit/:id' component={EditBlogPost} />
 								</Switch>
 							</div>
 						</div>

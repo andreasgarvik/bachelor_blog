@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createNewBlogPost } from '../../store/actions'
 import { Redirect } from 'react-router-dom'
-import Navbar from '../Navbar'
+import Navbar from '../ui/Navbar'
 
 class CreateBlogPost extends React.Component {
 	state = { title: '', content: '', images: [] }
@@ -24,13 +24,18 @@ class CreateBlogPost extends React.Component {
 	}
 
 	render() {
-		if (!this.props.auth.uid) return <Redirect to='/signin' />
+		if (!this.props.auth.uid) return <Redirect to='/' />
 		return (
 			<>
 				<Navbar location={this.props.history.location} />
 				<div className='container'>
 					<form onSubmit={this.handleSubmit} className='white'>
-						<h5 className='grey-text text-darken-3'>New Blog Post</h5>
+						<h5
+							className='grey-text text-darken-3'
+							style={{ marginBottom: '5%' }}
+						>
+							New Blog Post
+						</h5>
 						<div className='input-field'>
 							<label htmlFor='title'>Title</label>
 							<input type='text' id='title' onChange={this.handleChange} />
@@ -56,7 +61,12 @@ class CreateBlogPost extends React.Component {
 								/>
 							</div>
 						</div>
-						<button className='btn teal lighten-1 z-depth-0 right'>Post</button>
+						<button
+							className='btn teal lighten-1 z-depth-0 right'
+							style={{ marginBottom: '5%' }}
+						>
+							Post
+						</button>
 					</form>
 				</div>
 			</>

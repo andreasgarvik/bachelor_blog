@@ -1,5 +1,3 @@
-import { CREATE_BLOGPOST, LOGIN_SUCCESS, SIGNOUT_SUCCESS } from './types'
-
 export const createNewBlogPost = ({ title, content, images }) => async (
 	dispatch,
 	getState,
@@ -17,21 +15,48 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 
 	const imageRefs = await Promise.all(imagePromises)
 
-	const profile = getState().firebase.profile
+	const auther = getState().firebase.profile.name
 
-	const docRef = await firestore.collection('blogposts').add({
+	await firestore.collection('blogposts').add({
 		title,
 		content,
 		imageRefs,
 		score: 0,
-		auther: profile.name,
+		auther,
 		timestamp: Date.now()
 	})
+}
 
-	dispatch({
-		type: CREATE_BLOGPOST,
-		payload: docRef
+export const editBlogPost = ({ title, content, images }, id) => async (
+	dispatch,
+	getState,
+	{ getFirebase, getFirestore }
+) => {
+	const firestore = getFirestore()
+	const storage = getFirebase()
+		.storage()
+		.ref()
+
+	const imagePromises = Array.from(images).map(async image => {
+		const uploadTask = await storage.child(image.name).put(image)
+		return await uploadTask.ref.getDownloadURL()
 	})
+
+	const imageRefs = await Promise.all(imagePromises)
+
+	const auther = getState().firebase.profile.name
+
+	await firestore
+		.collection('blogposts')
+		.doc(id)
+		.set({
+			title,
+			content,
+			imageRefs,
+			score: 0,
+			auther,
+			timestamp: Date.now()
+		})
 }
 
 export const signIn = credentials => async (
@@ -41,13 +66,9 @@ export const signIn = credentials => async (
 ) => {
 	const firebase = getFirebase()
 
-	const res = await firebase
+	await firebase
 		.auth()
 		.signInWithEmailAndPassword(credentials.email, credentials.password)
-	dispatch({
-		type: LOGIN_SUCCESS,
-		payload: res
-	})
 }
 
 export const signOut = credentials => async (
@@ -57,9 +78,5 @@ export const signOut = credentials => async (
 ) => {
 	const firebase = getFirebase()
 
-	const res = await firebase.auth().signOut()
-	dispatch({
-		type: SIGNOUT_SUCCESS,
-		payload: res
-	})
+	await firebase.auth().signOut()
 }

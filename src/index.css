@@ -25,30 +25,30 @@
 
 @media screen and (max-width: 400px) {
 	.parallax-container {
-		height: 200px;
+		height: 150px;
 	}
 }
 @media screen and (min-width: 400px) and (max-width: 500px) {
 	.parallax-container {
-		height: 250px;
+		height: 200px;
 	}
 }
 
 @media screen and (min-width: 500px) and (max-width: 600px) {
 	.parallax-container {
-		height: 300px;
+		height: 250px;
 	}
 }
 
 @media screen and (min-width: 600px) and (max-width: 700px) {
 	.parallax-container {
-		height: 350px;
+		height: 300px;
 	}
 }
 
 @media screen and (min-width: 700px) and (max-width: 800px) {
 	.parallax-container {
-		height: 400px;
+		height: 350px;
 	}
 }
 @media screen and (min-width: 800px) and (max-width: 950px) {
@@ -81,13 +81,13 @@
 }
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
 	.parallax-container {
-		height: 800px;
+		height: 700px;
 	}
 }
 
 @media screen and (min-width: 1800px) and (max-width: 2160px) {
 	.parallax-container {
-		height: 900px;
+		height: 700px;
 	}
 }
 

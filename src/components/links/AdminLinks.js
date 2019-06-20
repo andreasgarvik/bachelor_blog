@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const AdminLinks = () => {
 	return (
-		<ul id='nav-mobile' className='left hide-on-med-and-down'>
+		<ul>
 			<li>
 				<NavLink to='/create'>New BlogPost</NavLink>
 			</li>

@@ -7,7 +7,7 @@ class BlogPost extends React.Component {
 		const { id, title, imageRefs, key } = this.props.blogpost
 		return (
 			<Link to={`/blogposts/${id}`} key={key}>
-				<div className='col s12 m6 l6 xl4'>
+				<div className='col s12 m6 l6 xl3'>
 					<div className='card'>
 						<div className='card-image'>
 							<img

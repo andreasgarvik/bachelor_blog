@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import Moment from 'react-moment'
-import Loader from '../Loader'
-import ProgressiveImage from './ProgressiveImage'
+import ProgressiveImage from '../../utils/ProgressiveImage'
 import M from 'materialize-css'
-import Navbar from '../Navbar'
+import Navbar from '../ui/Navbar'
+import FloatingActionButton from '../links/FloatingActionButton'
 
 class BlogPostDetails extends React.Component {
 	componentDidMount = () => {
@@ -14,11 +14,11 @@ class BlogPostDetails extends React.Component {
 	}
 
 	render() {
-		const { blogpost } = this.props
+		const { blogpost, id } = this.props
 		return (
 			<>
 				<Navbar location={this.props.history.location} />
-				<div className='container section'>
+				<div className='container'>
 					{blogpost ? (
 						<div className='card z-depth-0'>
 							<div className='card-content'>
@@ -40,10 +40,9 @@ class BlogPostDetails extends React.Component {
 								</div>
 							</div>
 						</div>
-					) : (
-						<Loader />
-					)}
+					) : null}
 				</div>
+				<FloatingActionButton id={id} />
 			</>
 		)
 	}
@@ -53,7 +52,7 @@ const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.match.params.id
 	const blogposts = state.firestore.data.blogposts
 	const blogpost = blogposts ? blogposts[id] : null
-	return { blogpost }
+	return { blogpost, id }
 }
 
 export default compose(
