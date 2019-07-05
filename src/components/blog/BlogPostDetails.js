@@ -50,11 +50,11 @@ class BlogPostDetails extends React.Component {
 					) : null}
 				</div>
 				<FloatingActionButton id={id} />
-				<div id='deleteModal' class='modal bottom-sheet'>
-					<div class='modal-content'>
+				<div id='deleteModal' className='modal bottom-sheet'>
+					<div className='modal-content'>
 						<h4>Are you sure you want to delete this blogpost?</h4>
 					</div>
-					<div class='modal-footer' style={{ marginBottom: '2%' }}>
+					<div className='modal-footer' style={{ marginBottom: '2%' }}>
 						<button
 							className='modal-close btn-large red modal-trigger'
 							onClick={this.handleDelete}

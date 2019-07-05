@@ -8,8 +8,11 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 		.storage()
 		.ref()
 
+	const imageNames = []
+
 	const imagePromises = Array.from(images).map(async image => {
 		const uploadTask = await storage.child(image.name).put(image)
+		imageNames.push(image.name)
 		return await uploadTask.ref.getDownloadURL()
 	})
 
@@ -20,6 +23,7 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 	await firestore.collection('blogposts').add({
 		title,
 		content,
+		imageNames,
 		imageRefs,
 		score: 0,
 		auther,
@@ -37,8 +41,11 @@ export const editBlogPost = ({ title, content, images }, id) => async (
 		.storage()
 		.ref()
 
+	const imageNames = []
+
 	const imagePromises = Array.from(images).map(async image => {
 		const uploadTask = await storage.child(image.name).put(image)
+		imageNames.push(image.name)
 		return await uploadTask.ref.getDownloadURL()
 	})
 
@@ -52,6 +59,7 @@ export const editBlogPost = ({ title, content, images }, id) => async (
 		.set({
 			title,
 			content,
+			imageNames,
 			imageRefs,
 			score: 0,
 			auther,
@@ -59,15 +67,21 @@ export const editBlogPost = ({ title, content, images }, id) => async (
 		})
 }
 
-export const deleteBlogPost = ({ title, content, images }, id) => async (
-	dispatch,
-	getState,
-	{ getFirebase, getFirestore }
-) => {
+export const deleteBlogPost = (
+	{ title, content, imageNames, images },
+	id
+) => async (dispatch, getState, { getFirebase, getFirestore }) => {
 	const firestore = getFirestore()
+	const storage = getFirebase()
+		.storage()
+		.ref()
 
-	//TODO
-	//Delete images in storage
+	const imagePromises = Array.from(imageNames).map(async image => {
+		const deleteTask = await storage.child(image)
+		return await deleteTask.delete()
+	})
+
+	await Promise.all(imagePromises)
 
 	await firestore
 		.collection('blogposts')
