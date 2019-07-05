@@ -18,9 +18,12 @@ class FloatingActionButton extends React.Component {
 				</Link>
 				<ul>
 					<li>
-						<Link to='/' className='btn-floating btn-large red'>
+						<button
+							data-target='deleteModal'
+							className='btn-floating btn-large red modal-trigger'
+						>
 							<i className='large material-icons'>delete</i>
-						</Link>
+						</button>
 					</li>
 				</ul>
 			</div>

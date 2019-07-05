@@ -6,7 +6,7 @@ import M from 'materialize-css'
 import BlogPostsList from '../blog/BlogPostsList'
 import Navbar from './Navbar'
 import PersonalBio from './PersonalBio'
-import RecentBlogPost from '../blog/RecentBlogpost'
+//import RecentBlogPost from '../blog/RecentBlogpost'
 import BackgroundImage1 from '../../images/BackgroundImage1.jpg'
 import BackgroundImage2 from '../../images/BackgroundImage2.jpg'
 

@@ -59,6 +59,22 @@ export const editBlogPost = ({ title, content, images }, id) => async (
 		})
 }
 
+export const deleteBlogPost = ({ title, content, images }, id) => async (
+	dispatch,
+	getState,
+	{ getFirebase, getFirestore }
+) => {
+	const firestore = getFirestore()
+
+	//TODO
+	//Delete images in storage
+
+	await firestore
+		.collection('blogposts')
+		.doc(id)
+		.delete()
+}
+
 export const signIn = credentials => async (
 	dispatch,
 	getState,

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { deleteBlogPost } from '../../store/actions'
 import Moment from 'react-moment'
 import ProgressiveImage from '../../utils/ProgressiveImage'
 import M from 'materialize-css'
@@ -11,6 +12,12 @@ import FloatingActionButton from '../links/FloatingActionButton'
 class BlogPostDetails extends React.Component {
 	componentDidMount = () => {
 		M.AutoInit()
+	}
+
+	handleDelete = () => {
+		const { deleteBlogPost, blogpost, id } = this.props
+		deleteBlogPost(blogpost, id)
+		this.props.history.push('/')
 	}
 
 	render() {
@@ -43,6 +50,19 @@ class BlogPostDetails extends React.Component {
 					) : null}
 				</div>
 				<FloatingActionButton id={id} />
+				<div id='deleteModal' class='modal bottom-sheet'>
+					<div class='modal-content'>
+						<h4>Are you sure you want to delete this blogpost?</h4>
+					</div>
+					<div class='modal-footer' style={{ marginBottom: '2%' }}>
+						<button
+							className='modal-close btn-large red modal-trigger'
+							onClick={this.handleDelete}
+						>
+							<i className='large material-icons'>delete</i>
+						</button>
+					</div>
+				</div>
 			</>
 		)
 	}
@@ -56,7 +76,10 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default compose(
-	connect(mapStateToProps),
+	connect(
+		mapStateToProps,
+		{ deleteBlogPost }
+	),
 	firestoreConnect([
 		{
 			collection: 'blogposts'
