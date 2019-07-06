@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { deleteBlogPost } from '../../store/actions'
+import { editHeartCommentBlogPost, deleteBlogPost } from '../../store/actions'
 import Moment from 'react-moment'
 import ProgressiveImage from '../../utils/ProgressiveImage'
 import M from 'materialize-css'
@@ -10,6 +10,8 @@ import Navbar from '../ui/Navbar'
 import FloatingActionButton from '../links/FloatingActionButton'
 
 class BlogPostDetails extends React.Component {
+	state = { heart: false }
+
 	componentDidMount = () => {
 		M.AutoInit()
 	}
@@ -18,6 +20,37 @@ class BlogPostDetails extends React.Component {
 		const { deleteBlogPost, blogpost, id } = this.props
 		deleteBlogPost(blogpost, id)
 		this.props.history.push('/')
+	}
+
+	showHeart = () => {
+		return this.state.heart ? (
+			<button
+				onClick={this.handleHeart}
+				className='btn-floating btn-large red lighten-3'
+				style={{ marginTop: '3%' }}
+			>
+				<i className='material-icons'>favorite</i>
+			</button>
+		) : (
+			<button
+				onClick={this.handleHeart}
+				className='btn-floating btn-large red lighten-3'
+				style={{ marginTop: '3%' }}
+			>
+				<i className='material-icons'>favorite_border</i>
+			</button>
+		)
+	}
+
+	handleHeart = () => {
+		let { hearts, comments } = this.props.blogpost
+		if (this.state.heart) {
+			this.setState({ heart: false })
+			this.props.editHeartCommentBlogPost(this.props.id, --hearts, comments)
+		} else {
+			this.setState({ heart: true })
+			this.props.editHeartCommentBlogPost(this.props.id, ++hearts, comments)
+		}
 	}
 
 	render() {
@@ -39,6 +72,7 @@ class BlogPostDetails extends React.Component {
 										alt=''
 									/>
 								) : null}
+								{this.showHeart()}
 							</div>
 							<div className='card-action grey lighten-4 grey-text'>
 								<div>Posted by {blogpost.auther}</div>
@@ -78,7 +112,7 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
 	connect(
 		mapStateToProps,
-		{ deleteBlogPost }
+		{ editHeartCommentBlogPost, deleteBlogPost }
 	),
 	firestoreConnect([
 		{

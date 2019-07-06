@@ -1,27 +1,29 @@
 import React from 'react'
 import PersonalBioImage from '../../images/PersonalBioImage.jpg'
-import ProgressiveImage from '../../utils/ProgressiveImage'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signOut } from '../../store/actions'
 
 const PersonalBio = props => {
 	return (
-		<div className='card z-depth-0'>
-			<div className='card-content'>
+		<div className='container'>
+			<div className='col s4' style={{ marginTop: '4%', marginBottom: '4%' }}>
 				{props.auth.uid ? (
 					<Link to='/' onClick={props.signOut}>
-						<ProgressiveImage image={PersonalBioImage} />
+						<img className='responsive-img' src={PersonalBioImage} alt='' />
 					</Link>
 				) : (
 					<Link to='/signin'>
-						<ProgressiveImage image={PersonalBioImage} />
+						<img className='responsive-img' src={PersonalBioImage} alt='' />
 					</Link>
 				)}
-				<span className='card-title'>My name is Sidsel Amanda</span>
-				<p style={{ whiteSpace: 'pre-wrap' }}>
-					I love to travel and this is my blog
-				</p>
+			</div>
+			<div
+				className='col s8'
+				style={{ marginTop: '4%', marginBottom: '4%', color: 'white' }}
+			>
+				<h4>My name is Sidsel Amanda</h4>
+				<p>I love to travel and this is my blog</p>
 			</div>
 		</div>
 	)

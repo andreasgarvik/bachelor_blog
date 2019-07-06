@@ -25,7 +25,8 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 		content,
 		imageNames,
 		imageRefs,
-		score: 0,
+		hearts: 0,
+		comments: [],
 		auther,
 		timestamp: Date.now()
 	})
@@ -51,19 +52,31 @@ export const editBlogPost = ({ title, content, images }, id) => async (
 
 	const imageRefs = await Promise.all(imagePromises)
 
-	const auther = getState().firebase.profile.name
-
 	await firestore
 		.collection('blogposts')
 		.doc(id)
-		.set({
+		.update({
 			title,
 			content,
 			imageNames,
 			imageRefs,
-			score: 0,
-			auther,
 			timestamp: Date.now()
+		})
+}
+
+export const editHeartCommentBlogPost = (id, hearts, comments) => async (
+	dispatch,
+	getState,
+	{ getFirebase, getFirestore }
+) => {
+	const firestore = getFirestore()
+
+	await firestore
+		.collection('blogposts')
+		.doc(id)
+		.update({
+			hearts,
+			comments
 		})
 }
 

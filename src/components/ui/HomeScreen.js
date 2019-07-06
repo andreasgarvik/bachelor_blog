@@ -6,7 +6,7 @@ import M from 'materialize-css'
 import BlogPostsList from '../blog/BlogPostsList'
 import Navbar from './Navbar'
 import PersonalBio from './PersonalBio'
-//import RecentBlogPost from '../blog/RecentBlogpost'
+import RecentBlogPost from '../blog/RecentBlogpost'
 import BackgroundImage1 from '../../images/BackgroundImage1.jpg'
 import BackgroundImage2 from '../../images/BackgroundImage2.jpg'
 
@@ -34,16 +34,18 @@ class HomeScreen extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className='parallax-container' style={{ maxHeight: '100px' }}>
-					<nav className='blue-grey darken-1 z-depth-0' />
+				<div className='parallax-container'>
+					<div className='blue-grey darken-1 z-depth-0'>
+						<div className='row'>
+							<PersonalBio />
+						</div>
+					</div>
 				</div>
 				<div className='section white'>
 					<div className='container'>
-						<div className='row'>
-							<div className='col s4'>
-								<PersonalBio />
-							</div>
-						</div>
+						{this.props.blogposts ? (
+							<RecentBlogPost blogpost={blogposts[0]} />
+						) : null}
 					</div>
 				</div>
 				<div className='parallax-container'>

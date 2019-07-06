@@ -1,11 +1,14 @@
 import React from 'react'
-import ProgressiveImage from '../../utils/ProgressiveImage'
 
 const RecentBlogPost = ({ blogpost }) => {
 	return (
-		<div className='card z-depth-0'>
+		<div className='card z-depth-0' style={{ marginTop: '0%' }}>
 			<div className='card-content'>
-				<ProgressiveImage image={blogpost.imageRefs[0]} />
+				<img
+					className='responsive-img'
+					src={blogpost.imageRefs[0]}
+					alt={blogpost.imageNames[0]}
+				/>
 				<span className='card-title'>{blogpost.title}</span>
 				<p style={{ whiteSpace: 'pre-wrap' }}>{blogpost.content}</p>
 				{blogpost.imageRefs[1] ? (

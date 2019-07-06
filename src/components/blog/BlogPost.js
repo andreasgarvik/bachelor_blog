@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 class BlogPost extends React.Component {
 	state = { imageLoaded: false }
 	render() {
-		const { id, title, imageRefs, key } = this.props.blogpost
+		const { id, title, imageNames, imageRefs, key } = this.props.blogpost
 		return (
 			<Link to={`/blogposts/${id}`} key={key}>
 				<div className='col s12 m6 l6 xl3'>
@@ -13,7 +13,7 @@ class BlogPost extends React.Component {
 							<img
 								onLoad={() => this.setState({ imageLoaded: true })}
 								src={imageRefs[0]}
-								alt=''
+								alt={imageNames[0]}
 							/>
 							<span
 								style={{

@@ -12,7 +12,7 @@ class FloatingActionButton extends React.Component {
 			<div className='fixed-action-btn'>
 				<Link
 					to={`/edit/${this.props.id}`}
-					className='btn-floating btn-large red'
+					className='btn-floating btn-large teal lighten-3'
 				>
 					<i className='large material-icons'>mode_edit</i>
 				</Link>
@@ -20,7 +20,7 @@ class FloatingActionButton extends React.Component {
 					<li>
 						<button
 							data-target='deleteModal'
-							className='btn-floating btn-large red modal-trigger'
+							className='btn-floating btn-large teal lighten-3 modal-trigger'
 						>
 							<i className='large material-icons'>delete</i>
 						</button>
