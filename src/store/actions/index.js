@@ -25,7 +25,6 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 		content,
 		imageNames,
 		imageRefs,
-		hearts: 0,
 		auther,
 		timestamp: Date.now()
 	})
@@ -69,19 +68,17 @@ export const editBlogPost = (
 		})
 }
 
-export const editHeartBlogPost = (id, hearts) => async (
+export const editHeartBlogPost = (blogpost, hearts) => async (
 	dispatch,
 	getState,
 	{ getFirebase, getFirestore }
 ) => {
 	const firestore = getFirestore()
 
-	await firestore
-		.collection('blogposts')
-		.doc(id)
-		.update({
-			hearts
-		})
+	await firestore.collection('hearts').add({
+		blogpost,
+		hearts
+	})
 }
 
 export const postComment = ({ name, text }, blogpost) => async (
@@ -114,6 +111,13 @@ export const deleteBlogPost = (
 	})
 
 	await Promise.all(imagePromises)
+
+	const deleteComments = await firestore
+		.collection('comments')
+		.where('blogpost', '==', `${id}`)
+		.get()
+
+	deleteComments.forEach(async comment => await comment.ref.delete())
 
 	await firestore
 		.collection('blogposts')

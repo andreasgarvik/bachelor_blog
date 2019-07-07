@@ -3,7 +3,7 @@ import Comment from './Comment'
 
 const CommentArea = ({ comments }) => {
 	return (
-		<ul className='collection'>
+		<ul className='collection' style={{ border: 'none' }}>
 			{comments.map(comment => {
 				return <Comment key={comment.id} comment={comment} />
 			})}

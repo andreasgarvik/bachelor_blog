@@ -34,7 +34,7 @@ class BlogPostDetails extends React.Component {
 		return this.state.heart ? (
 			<button
 				onClick={this.handleHeart}
-				className='btn-floating btn-large red lighten-3'
+				className='btn-floating btn-large red lighten-3 right'
 				style={{ marginTop: '3%' }}
 			>
 				<i className='material-icons'>favorite</i>
@@ -42,7 +42,7 @@ class BlogPostDetails extends React.Component {
 		) : (
 			<button
 				onClick={this.handleHeart}
-				className='btn-floating btn-large red lighten-3'
+				className='btn-floating btn-large red lighten-3 right'
 				style={{ marginTop: '3%' }}
 			>
 				<i className='material-icons'>favorite_border</i>
@@ -51,18 +51,14 @@ class BlogPostDetails extends React.Component {
 	}
 
 	handleHeart = () => {
-		let { hearts, comments } = this.props.blogpost
-		if (this.state.heart) {
-			this.setState({ heart: false })
-			this.props.editHeartBlogPost(this.props.id, --hearts, comments)
-		} else {
+		if (!this.state.heart) {
 			this.setState({ heart: true })
-			this.props.editHeartBlogPost(this.props.id, ++hearts, comments)
+			this.props.editHeartBlogPost(this.props.id, 1)
 		}
 	}
 
 	render() {
-		const { blogpost, id, comments } = this.props
+		const { blogpost, id, comments, hearts } = this.props
 		return (
 			<>
 				<Navbar location={this.props.history.location} />
@@ -83,13 +79,24 @@ class BlogPostDetails extends React.Component {
 								{this.showHeart()}
 								<button
 									onClick={this.showCommentForm}
-									className='btn-floating btn-large grey right'
+									className='btn-floating btn-large grey'
 									style={{ marginTop: '3%' }}
 								>
 									<i className='material-icons'>format_align_left</i>
 								</button>
+								{this.props.auth.uid ? (
+									<h4
+										className='right'
+										style={{ marginRight: '4%', marginTop: '4.5%' }}
+									>
+										{hearts}
+									</h4>
+								) : null}
 							</div>
-							<div className='card-action grey lighten-4 grey-text'>
+							<div
+								className='card-action grey lighten-4 grey-text'
+								style={{ border: 'none' }}
+							>
 								<div>Posted by {blogpost.auther}</div>
 								<div>
 									<Moment format='D MMM YYYY'>{blogpost.timestamp}</Moment>
@@ -98,7 +105,9 @@ class BlogPostDetails extends React.Component {
 						</div>
 					) : null}
 					{comments ? <CommentArea comments={this.props.comments} /> : null}
-					{this.state.showCommentForm ? <CommentForm id={id} /> : null}
+					{this.state.showCommentForm ? (
+						<CommentForm id={id} showCommentForm={this.showCommentForm} />
+					) : null}
 				</div>
 				{this.props.auth.uid ? <FloatingActionButton id={id} /> : null}
 				<div id='deleteModal' className='modal bottom-sheet'>
@@ -124,8 +133,11 @@ const mapStateToProps = (state, ownProps) => {
 	const blogposts = state.firestore.ordered.blogposts
 	const blogpost = blogposts ? blogposts[0] : null
 	const comments = state.firestore.ordered.comments
+	const hearts = state.firestore.ordered.hearts
+		? state.firestore.ordered.hearts.length
+		: 0
 	const auth = state.firebase.auth
-	return { blogpost, id, auth, comments }
+	return { blogpost, id, auth, comments, hearts }
 }
 
 export default compose(
@@ -138,6 +150,10 @@ export default compose(
 		{
 			collection: 'comments',
 			orderBy: 'timestamp',
+			where: ['blogpost', '==', `${props.match.params.id}`]
+		},
+		{
+			collection: 'hearts',
 			where: ['blogpost', '==', `${props.match.params.id}`]
 		}
 	])

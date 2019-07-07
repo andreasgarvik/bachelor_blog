@@ -13,6 +13,7 @@ class CommentForm extends React.Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
+		this.props.showCommentForm()
 		this.props.postComment(this.state, this.props.id)
 	}
 

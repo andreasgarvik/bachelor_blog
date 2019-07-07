@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Truncate from 'react-truncate'
 
 const RecentBlogPost = ({ id, blogpost }) => {
-	return (
+	return blogpost ? (
 		<div className='card z-depth-0' style={{ marginTop: '0%' }}>
 			<div className='card-content'>
 				<img
@@ -37,12 +37,9 @@ const RecentBlogPost = ({ id, blogpost }) => {
 						}
 					})}
 				</Truncate>
-				{blogpost.imageRefs[1] ? (
-					<img className='responsive-img' src={blogpost.imageRefs[1]} alt='' />
-				) : null}
 			</div>
 		</div>
-	)
+	) : null
 }
 
 export default RecentBlogPost
