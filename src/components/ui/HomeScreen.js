@@ -9,6 +9,7 @@ import PersonalBio from './PersonalBio'
 import RecentBlogPost from '../blog/RecentBlogpost'
 import BackgroundImage1 from '../../images/BackgroundImage1.jpg'
 import BackgroundImage2 from '../../images/BackgroundImage2.jpg'
+import { relative } from 'path'
 
 class HomeScreen extends React.Component {
 	componentDidMount = () => {
@@ -44,7 +45,7 @@ class HomeScreen extends React.Component {
 				<div className='section white'>
 					<div className='container'>
 						{this.props.blogposts ? (
-							<RecentBlogPost blogpost={blogposts[0]} />
+							<RecentBlogPost id={blogposts[0].id} blogpost={blogposts[0]} />
 						) : null}
 					</div>
 				</div>

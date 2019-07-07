@@ -26,31 +26,36 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 		imageNames,
 		imageRefs,
 		hearts: 0,
-		comments: [],
 		auther,
 		timestamp: Date.now()
 	})
 }
 
-export const editBlogPost = ({ title, content, images }, id) => async (
-	dispatch,
-	getState,
-	{ getFirebase, getFirestore }
-) => {
+export const editBlogPost = (
+	{ title, content, imageNames, images },
+	id
+) => async (dispatch, getState, { getFirebase, getFirestore }) => {
 	const firestore = getFirestore()
 	const storage = getFirebase()
 		.storage()
 		.ref()
 
-	const imageNames = []
+	const imagePromises = Array.from(imageNames).map(async image => {
+		const deleteTask = await storage.child(image)
+		return await deleteTask.delete()
+	})
 
-	const imagePromises = Array.from(images).map(async image => {
+	await Promise.all(imagePromises)
+
+	const newImageNames = []
+
+	const newImagePromises = Array.from(images).map(async image => {
 		const uploadTask = await storage.child(image.name).put(image)
-		imageNames.push(image.name)
+		newImageNames.push(image.name)
 		return await uploadTask.ref.getDownloadURL()
 	})
 
-	const imageRefs = await Promise.all(imagePromises)
+	const imageRefs = await Promise.all(newImagePromises)
 
 	await firestore
 		.collection('blogposts')
@@ -58,13 +63,13 @@ export const editBlogPost = ({ title, content, images }, id) => async (
 		.update({
 			title,
 			content,
-			imageNames,
+			imageNames: newImageNames,
 			imageRefs,
 			timestamp: Date.now()
 		})
 }
 
-export const editHeartCommentBlogPost = (id, hearts, comments) => async (
+export const editHeartBlogPost = (id, hearts) => async (
 	dispatch,
 	getState,
 	{ getFirebase, getFirestore }
@@ -75,9 +80,23 @@ export const editHeartCommentBlogPost = (id, hearts, comments) => async (
 		.collection('blogposts')
 		.doc(id)
 		.update({
-			hearts,
-			comments
+			hearts
 		})
+}
+
+export const postComment = ({ name, text }, blogpost) => async (
+	dispatch,
+	getState,
+	{ getFirebase, getFirestore }
+) => {
+	const firestore = getFirestore()
+
+	await firestore.collection('comments').add({
+		name,
+		text,
+		blogpost,
+		timestamp: Date.now()
+	})
 }
 
 export const deleteBlogPost = (

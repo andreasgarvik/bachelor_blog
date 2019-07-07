@@ -9,7 +9,7 @@ class EditBlogPost extends React.Component {
 	constructor(props) {
 		super(props)
 		this.textAreaRef = React.createRef()
-		this.state = { title: '', content: '', images: [] }
+		this.state = { title: '', content: '', imageNames: [], images: [] }
 	}
 
 	handleChange = e => {
@@ -20,8 +20,8 @@ class EditBlogPost extends React.Component {
 
 	componentDidMount = () => {
 		if (this.props.blogpost) {
-			const { title, content, imageRefs } = this.props.blogpost
-			this.setState({ title, content, images: imageRefs })
+			const { title, content, imageNames, imageRefs } = this.props.blogpost
+			this.setState({ title, content, imageNames, images: imageRefs })
 		}
 	}
 
@@ -78,7 +78,7 @@ class EditBlogPost extends React.Component {
 							/>
 						</div>
 						<div className='file-field input-field'>
-							<div className='btn teal lighten-1 z-depth-0'>
+							<div className='btn teal lighten-3 z-depth-0'>
 								<span>Images</span>
 								<input type='file' multiple onChange={this.uploadImages} />
 							</div>
@@ -91,7 +91,7 @@ class EditBlogPost extends React.Component {
 							</div>
 						</div>
 						<button
-							className='btn teal lighten-1 z-depth-0 right'
+							className='btn teal lighten-3 z-depth-0 right'
 							style={{ marginBottom: '5%' }}
 						>
 							Post

@@ -49,7 +49,7 @@ class CreateBlogPost extends React.Component {
 							/>
 						</div>
 						<div className='file-field input-field'>
-							<div className='btn teal lighten-1 z-depth-0'>
+							<div className='btn teal lighten-3 z-depth-0'>
 								<span>Images</span>
 								<input type='file' multiple onChange={this.uploadImages} />
 							</div>
@@ -62,7 +62,7 @@ class CreateBlogPost extends React.Component {
 							</div>
 						</div>
 						<button
-							className='btn teal lighten-1 z-depth-0 right'
+							className='btn teal lighten-3 z-depth-0 right'
 							style={{ marginBottom: '5%' }}
 						>
 							Post

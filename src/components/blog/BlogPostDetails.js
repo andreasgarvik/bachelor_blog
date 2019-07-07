@@ -2,15 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { editHeartCommentBlogPost, deleteBlogPost } from '../../store/actions'
+import { editHeartBlogPost, deleteBlogPost } from '../../store/actions'
 import Moment from 'react-moment'
 import ProgressiveImage from '../../utils/ProgressiveImage'
 import M from 'materialize-css'
 import Navbar from '../ui/Navbar'
 import FloatingActionButton from '../links/FloatingActionButton'
+import CommentArea from '../comments/CommentArea'
+import CommentForm from '../comments/CommentForm'
 
 class BlogPostDetails extends React.Component {
-	state = { heart: false }
+	state = { heart: false, commentFormShowing: false }
 
 	componentDidMount = () => {
 		M.AutoInit()
@@ -20,6 +22,12 @@ class BlogPostDetails extends React.Component {
 		const { deleteBlogPost, blogpost, id } = this.props
 		deleteBlogPost(blogpost, id)
 		this.props.history.push('/')
+	}
+
+	showCommentForm = () => {
+		this.state.showCommentForm
+			? this.setState({ showCommentForm: false })
+			: this.setState({ showCommentForm: true })
 	}
 
 	showHeart = () => {
@@ -46,15 +54,15 @@ class BlogPostDetails extends React.Component {
 		let { hearts, comments } = this.props.blogpost
 		if (this.state.heart) {
 			this.setState({ heart: false })
-			this.props.editHeartCommentBlogPost(this.props.id, --hearts, comments)
+			this.props.editHeartBlogPost(this.props.id, --hearts, comments)
 		} else {
 			this.setState({ heart: true })
-			this.props.editHeartCommentBlogPost(this.props.id, ++hearts, comments)
+			this.props.editHeartBlogPost(this.props.id, ++hearts, comments)
 		}
 	}
 
 	render() {
-		const { blogpost, id } = this.props
+		const { blogpost, id, comments } = this.props
 		return (
 			<>
 				<Navbar location={this.props.history.location} />
@@ -67,12 +75,19 @@ class BlogPostDetails extends React.Component {
 								<p style={{ whiteSpace: 'pre-wrap' }}>{blogpost.content}</p>
 								{blogpost.imageRefs[1] ? (
 									<img
-										className='responsive-img materialboxed'
+										className='responsive-img'
 										src={blogpost.imageRefs[1]}
 										alt=''
 									/>
 								) : null}
 								{this.showHeart()}
+								<button
+									onClick={this.showCommentForm}
+									className='btn-floating btn-large grey right'
+									style={{ marginTop: '3%' }}
+								>
+									<i className='material-icons'>format_align_left</i>
+								</button>
 							</div>
 							<div className='card-action grey lighten-4 grey-text'>
 								<div>Posted by {blogpost.auther}</div>
@@ -82,8 +97,10 @@ class BlogPostDetails extends React.Component {
 							</div>
 						</div>
 					) : null}
+					{comments ? <CommentArea comments={this.props.comments} /> : null}
+					{this.state.showCommentForm ? <CommentForm id={id} /> : null}
 				</div>
-				<FloatingActionButton id={id} />
+				{this.props.auth.uid ? <FloatingActionButton id={id} /> : null}
 				<div id='deleteModal' className='modal bottom-sheet'>
 					<div className='modal-content'>
 						<h4>Are you sure you want to delete this blogpost?</h4>
@@ -104,19 +121,24 @@ class BlogPostDetails extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.match.params.id
-	const blogposts = state.firestore.data.blogposts
-	const blogpost = blogposts ? blogposts[id] : null
-	return { blogpost, id }
+	const blogposts = state.firestore.ordered.blogposts
+	const blogpost = blogposts ? blogposts[0] : null
+	const comments = state.firestore.ordered.comments
+	const auth = state.firebase.auth
+	return { blogpost, id, auth, comments }
 }
 
 export default compose(
 	connect(
 		mapStateToProps,
-		{ editHeartCommentBlogPost, deleteBlogPost }
+		{ editHeartBlogPost, deleteBlogPost }
 	),
-	firestoreConnect([
+	firestoreConnect(props => [
+		`blogposts/${props.match.params.id}`,
 		{
-			collection: 'blogposts'
+			collection: 'comments',
+			orderBy: 'timestamp',
+			where: ['blogpost', '==', `${props.match.params.id}`]
 		}
 	])
 )(BlogPostDetails)

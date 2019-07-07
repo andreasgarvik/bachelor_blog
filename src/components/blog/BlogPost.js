@@ -8,7 +8,7 @@ class BlogPost extends React.Component {
 		return (
 			<Link to={`/blogposts/${id}`} key={key}>
 				<div className='col s12 m6 l6 xl3'>
-					<div className='card'>
+					<div className='card hoverable'>
 						<div className='card-image'>
 							<img
 								onLoad={() => this.setState({ imageLoaded: true })}
