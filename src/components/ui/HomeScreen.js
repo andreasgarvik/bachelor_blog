@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Link } from 'react-router-dom'
 import M from 'materialize-css'
 import BlogPostsList from '../blog/BlogPostsList'
 import Navbar from './Navbar'
@@ -16,7 +17,7 @@ class HomeScreen extends React.Component {
 	}
 
 	render() {
-		const { blogposts } = this.props
+		const { blogposts, personal } = this.props
 		return (
 			<>
 				<Navbar location={this.props.history.location} />
@@ -28,16 +29,25 @@ class HomeScreen extends React.Component {
 				<div className='section white'>
 					<div className='container'>
 						<div className='row'>
-							{this.props.blogposts ? (
-								<BlogPostsList blogposts={blogposts} />
-							) : null}
+							{blogposts ? <BlogPostsList blogposts={blogposts} /> : null}
 						</div>
 					</div>
+					<Link
+						to='/blogposts'
+						className='btn grey'
+						style={{
+							margin: 'auto',
+							display: 'block',
+							width: '75px'
+						}}
+					>
+						More
+					</Link>
 				</div>
-				<div className='parallax-container'>
+				<div>
 					<div className='blue-grey darken-1 z-depth-0'>
 						<div className='row'>
-							<PersonalBio />
+							<PersonalBio personal={personal ? personal[0] : null} />
 						</div>
 					</div>
 				</div>
@@ -62,12 +72,16 @@ class HomeScreen extends React.Component {
 }
 
 const mapStateToProps = state => {
-	return { blogposts: state.firestore.ordered.blogposts }
+	return {
+		blogposts: state.firestore.ordered.blogposts,
+		personal: state.firestore.ordered.personal
+	}
 }
 
 export default compose(
 	connect(mapStateToProps),
 	firestoreConnect([
+		'personal',
 		{ collection: 'blogposts', orderBy: ['timestamp', 'desc'], limit: 4 }
 	])
 )(HomeScreen)

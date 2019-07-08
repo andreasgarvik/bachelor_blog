@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import HomeScreen from './components/ui/HomeScreen'
 import BlogPostDetails from './components/blog/BlogPostDetails'
+import BlogPostArchive from './components/blog/BlogPostArchive'
 import SignIn from './components/auth/SignIn'
 import CreateBlogPost from './components/blog/CreateBlogPost'
 import EditBlogPost from './components/blog/EditBlogPost'
@@ -27,6 +28,7 @@ class App extends React.Component {
 								<Switch>
 									<Route exact path='/' component={HomeScreen} />
 									<Route path='/blogposts/:id' component={BlogPostDetails} />
+									<Route path='/blogposts' component={BlogPostArchive} />
 									<Route path='/signin' component={SignIn} />
 									<Route path='/create' component={CreateBlogPost} />
 									<Route path='/edit/:id' component={EditBlogPost} />

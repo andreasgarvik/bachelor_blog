@@ -119,10 +119,33 @@ export const deleteBlogPost = (
 
 	deleteComments.forEach(async comment => await comment.ref.delete())
 
+	const deleteHearts = await firestore
+		.collection('hearts')
+		.where('blogpost', '==', `${id}`)
+		.get()
+
+	deleteHearts.forEach(async heart => await heart.ref.delete())
+
 	await firestore
 		.collection('blogposts')
 		.doc(id)
 		.delete()
+}
+
+export const editPersonalBio = (id, title, text) => async (
+	dispatch,
+	getState,
+	{ getFirebase, getFirestore }
+) => {
+	const firestore = getFirestore()
+
+	await firestore
+		.collection('personal')
+		.doc(id)
+		.update({
+			title,
+			text
+		})
 }
 
 export const signIn = credentials => async (
