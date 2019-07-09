@@ -33,7 +33,10 @@ class PersonalBio extends React.Component {
 		const { personal } = this.props
 		return (
 			<div className='container'>
-				<div className='col s4' style={{ marginTop: '4%', marginBottom: '4%' }}>
+				<div
+					className='col s12 m4 '
+					style={{ marginTop: '4%', marginBottom: '4%' }}
+				>
 					{this.props.auth.uid ? (
 						<Link to='/' onClick={this.props.signOut}>
 							<img className='responsive-img' src={PersonalBioImage} alt='' />
