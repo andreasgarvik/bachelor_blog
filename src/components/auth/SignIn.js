@@ -38,7 +38,7 @@ class SignIn extends React.Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<button className='btn teal lighten-1 z-depth-0'>Log In</button>
+						<button className='btn teal lighten-3 z-depth-0'>Log In</button>
 					</form>
 				</div>
 			</>

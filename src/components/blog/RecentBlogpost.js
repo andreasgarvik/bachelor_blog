@@ -13,7 +13,7 @@ const RecentBlogPost = ({ id, blogpost }) => {
 				/>
 				<span className='card-title'>{blogpost.title}</span>
 				<Truncate
-					lines={1}
+					lines={3}
 					ellipsis={
 						<span>
 							...
@@ -27,7 +27,15 @@ const RecentBlogPost = ({ id, blogpost }) => {
 						</span>
 					}
 				>
-					{blogpost.content}
+					{blogpost.content.split('\n').map((line, i, arr) => {
+						const newLine = <span key={i}>{line}</span>
+
+						if (i === arr.length - 1) {
+							return newLine
+						} else {
+							return [newLine, <br key={i + 'br'} />]
+						}
+					})}
 				</Truncate>
 			</div>
 		</div>

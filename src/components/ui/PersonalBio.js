@@ -48,7 +48,7 @@ class PersonalBio extends React.Component {
 					)}
 				</div>
 				<div
-					className='col s8'
+					className='col s12 m8'
 					style={{ marginTop: '4%', marginBottom: '4%', color: 'white' }}
 				>
 					{this.state.edit ? (
