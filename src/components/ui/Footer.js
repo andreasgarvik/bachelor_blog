@@ -23,7 +23,7 @@ const Footer = props => {
 					© 2019 Created by Andreas Garvik
 					<a
 						className='grey-text text-lighten-4 right'
-						href='https://github.com/180312'
+						href='https://github.com/andreasgarvik'
 					>
 						Github
 					</a>
