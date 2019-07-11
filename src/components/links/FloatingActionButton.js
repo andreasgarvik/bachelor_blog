@@ -9,18 +9,23 @@ class FloatingActionButton extends React.Component {
 
 	render() {
 		return (
-			<div className='fixed-action-btn'>
-				<Link
-					to={`/edit/${this.props.id}`}
-					className='btn-floating btn-large teal lighten-3'
-				>
-					<i className='large material-icons'>mode_edit</i>
-				</Link>
+			<div className='fixed-action-btn click-to-toggle'>
+				<button className='btn-floating btn-large grey'>
+					<i className='large material-icons'>settings</i>
+				</button>
 				<ul>
+					<li>
+						<Link
+							to={`/edit/${this.props.id}`}
+							className='btn-floating btn-large grey'
+						>
+							<i className='large material-icons'>mode_edit</i>
+						</Link>
+					</li>
 					<li>
 						<button
 							data-target='deleteModal'
-							className='btn-floating btn-large teal lighten-3 modal-trigger'
+							className='btn-floating btn-large grey modal-trigger'
 						>
 							<i className='large material-icons'>delete</i>
 						</button>

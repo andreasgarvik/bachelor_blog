@@ -36,7 +36,7 @@ class CommentForm extends React.Component {
 					/>
 				</div>
 				<button
-					className='btn teal lighten-3 z-depth-0 right'
+					className='btn grey z-depth-0 right'
 					style={{ marginBottom: '5%' }}
 				>
 					Post

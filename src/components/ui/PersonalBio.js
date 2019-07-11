@@ -76,13 +76,13 @@ class PersonalBio extends React.Component {
 								/>
 							</div>
 							<button
-								className='btn teal lighten-3 z-depth-0 left'
+								className='btn grey z-depth-0 left'
 								onClick={this.editClick}
 							>
 								Back
 							</button>
 							<button
-								className='btn teal lighten-3 z-depth-0 right'
+								className='btn grey z-depth-0 right'
 								style={{ marginBottom: '5%' }}
 							>
 								Post
