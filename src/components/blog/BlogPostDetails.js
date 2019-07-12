@@ -67,10 +67,13 @@ class BlogPostDetails extends React.Component {
 						<div className='card z-depth-0'>
 							<div className='card-content'>
 								<ProgressiveImage image={blogpost.imageRefs[0]} />
-								<span className='card-title'>{blogpost.title}</span>
+								<span className='card-title' style={{ marginTop: '2%' }}>
+									{blogpost.title}
+								</span>
 								<p style={{ whiteSpace: 'pre-wrap' }}>{blogpost.content}</p>
 								{blogpost.imageRefs[1] ? (
 									<img
+										style={{ marginTop: '4%' }}
 										className='responsive-img'
 										src={blogpost.imageRefs[1]}
 										alt=''
