@@ -35,12 +35,7 @@ class CommentForm extends React.Component {
 						onChange={this.handleChange}
 					/>
 				</div>
-				<button
-					className='btn grey z-depth-0 right'
-					style={{ marginBottom: '5%' }}
-				>
-					Post
-				</button>
+				<button className='btn grey z-depth-0 right'>Post</button>
 			</form>
 		)
 	}

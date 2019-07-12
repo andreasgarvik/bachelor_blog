@@ -132,19 +132,29 @@ export const deleteBlogPost = (
 		.delete()
 }
 
-export const editPersonalBio = (id, title, text) => async (
+export const editPersonalBio = (id, title, text, imageName, image) => async (
 	dispatch,
 	getState,
 	{ getFirebase, getFirestore }
 ) => {
 	const firestore = getFirestore()
+	const storage = getFirebase()
+		.storage()
+		.ref()
+
+	await storage.child(imageName).delete()
+
+	const uploadTask = await storage.child(image.name).put(image)
+	const newImage = await uploadTask.ref.getDownloadURL()
 
 	await firestore
 		.collection('personal')
 		.doc(id)
 		.update({
 			title,
-			text
+			text,
+			imageName: image.name,
+			image: newImage
 		})
 }
 

@@ -90,12 +90,7 @@ class EditBlogPost extends React.Component {
 								/>
 							</div>
 						</div>
-						<button
-							className='btn grey z-depth-0 right'
-							style={{ marginBottom: '5%' }}
-						>
-							Post
-						</button>
+						<button className='btn grey z-depth-0 right'>Post</button>
 					</form>
 					<div className='container'>
 						<img className='responsive-img' src={this.state.images[0]} alt='' />

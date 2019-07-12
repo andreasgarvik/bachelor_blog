@@ -1,16 +1,19 @@
 import React from 'react'
-import PersonalBioImage from '../../images/PersonalBioImage.jpg'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { editPersonalBio, signOut } from '../../store/actions'
 
 class PersonalBio extends React.Component {
-	state = { edit: false, title: '', text: '' }
+	state = { edit: false, title: '', text: '', image: null }
 
 	handleChange = e => {
 		this.setState({
 			[e.target.id]: e.target.value
 		})
+	}
+
+	uploadImage = e => {
+		this.setState({ image: e.target.files[0] })
 	}
 
 	editClick = () => {
@@ -24,7 +27,9 @@ class PersonalBio extends React.Component {
 		this.props.editPersonalBio(
 			this.props.personal.id,
 			this.state.title,
-			this.state.text
+			this.state.text,
+			this.props.personal.imageName,
+			this.state.image
 		)
 		this.setState({ edit: false })
 	}
@@ -39,11 +44,19 @@ class PersonalBio extends React.Component {
 				>
 					{this.props.auth.uid ? (
 						<Link to='/' onClick={this.props.signOut}>
-							<img className='responsive-img' src={PersonalBioImage} alt='' />
+							<img
+								className='responsive-img'
+								src={personal ? personal.image : null}
+								alt=''
+							/>
 						</Link>
 					) : (
 						<Link to='/signin'>
-							<img className='responsive-img' src={PersonalBioImage} alt='' />
+							<img
+								className='responsive-img'
+								src={personal ? personal.image : null}
+								alt=''
+							/>
 						</Link>
 					)}
 				</div>
@@ -75,18 +88,26 @@ class PersonalBio extends React.Component {
 									onChange={this.handleChange}
 								/>
 							</div>
+							<div className='file-field input-field'>
+								<div className='btn grey z-depth-0'>
+									<span>Image</span>
+									<input type='file' onChange={this.uploadImage} />
+								</div>
+								<div className='file-path-wrapper'>
+									<input
+										className='file-path validate'
+										type='text'
+										placeholder='Upload image'
+									/>
+								</div>
+							</div>
 							<button
 								className='btn grey z-depth-0 left'
 								onClick={this.editClick}
 							>
 								Back
 							</button>
-							<button
-								className='btn grey z-depth-0 right'
-								style={{ marginBottom: '5%' }}
-							>
-								Post
-							</button>
+							<button className='btn grey z-depth-0 right'>Post</button>
 						</form>
 					) : (
 						<>

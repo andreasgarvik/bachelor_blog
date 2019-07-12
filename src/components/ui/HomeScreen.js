@@ -47,7 +47,12 @@ class HomeScreen extends React.Component {
 				<div>
 					<div className='blue-grey darken-1 z-depth-0'>
 						<div className='row'>
-							<PersonalBio personal={personal ? personal[0] : null} />
+							<div className='col s12 xl6'>
+								<PersonalBio personal={personal ? personal[0] : null} />
+							</div>
+							<div className='col s12 xl6'>
+								<PersonalBio personal={personal ? personal[1] : null} />
+							</div>
 						</div>
 					</div>
 				</div>
