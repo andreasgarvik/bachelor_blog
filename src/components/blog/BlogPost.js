@@ -23,6 +23,7 @@ class BlogPost extends React.Component {
 								onLoad={() => this.setState({ imageLoaded: true })}
 								src={imageRefs[0]}
 								alt={imageNames[0]}
+								style={{ height: '250px' }}
 							/>
 						</div>
 						<div className='card-content'>
