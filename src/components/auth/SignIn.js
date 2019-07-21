@@ -38,7 +38,13 @@ class SignIn extends React.Component {
 								onChange={this.handleChange}
 							/>
 						</div>
-						<button className='btn grey z-depth-0'>Log In</button>
+						<button
+							className={`btn grey z-depth-0 right ${
+								!this.state.email || !this.state.password ? 'disabled' : ''
+							}`}
+						>
+							Log In
+						</button>
 					</form>
 				</div>
 			</>

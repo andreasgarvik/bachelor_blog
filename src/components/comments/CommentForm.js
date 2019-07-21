@@ -35,7 +35,14 @@ class CommentForm extends React.Component {
 						onChange={this.handleChange}
 					/>
 				</div>
-				<button className='btn grey z-depth-0 right'>Post</button>
+				<button
+					style={{ marginBottom: '4%' }}
+					className={`btn grey z-depth-0 right ${
+						!this.state.name || !this.state.text ? 'disabled' : ''
+					}`}
+				>
+					Post
+				</button>
 			</form>
 		)
 	}

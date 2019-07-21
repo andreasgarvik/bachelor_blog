@@ -18,7 +18,7 @@ class PersonalBio extends React.Component {
 
 	editClick = () => {
 		this.state.edit
-			? this.setState({ edit: false })
+			? this.setState({ edit: false, title: '', text: '', image: null })
 			: this.setState({ edit: true })
 	}
 
@@ -107,7 +107,15 @@ class PersonalBio extends React.Component {
 							>
 								Back
 							</button>
-							<button className='btn grey z-depth-0 right'>Post</button>
+							<button
+								className={`btn grey z-depth-0 right ${
+									!this.state.title || !this.state.text || !this.state.image
+										? 'disabled'
+										: ''
+								}`}
+							>
+								Post
+							</button>
 						</form>
 					) : (
 						<>

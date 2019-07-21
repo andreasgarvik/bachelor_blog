@@ -61,7 +61,17 @@ class CreateBlogPost extends React.Component {
 								/>
 							</div>
 						</div>
-						<button className='btn grey z-depth-0 right'>Post</button>
+						<button
+							className={`btn grey z-depth-0 right ${
+								!this.state.title ||
+								!this.state.content ||
+								!this.state.images.length
+									? 'disabled'
+									: ''
+							}`}
+						>
+							Post
+						</button>
 					</form>
 				</div>
 			</>
