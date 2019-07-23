@@ -96,6 +96,19 @@ export const postComment = ({ name, text }, blogpost) => async (
 	})
 }
 
+export const deleteComment = id => async (
+	dispatch,
+	getState,
+	{ getFirebase, getFirestore }
+) => {
+	const firestore = getFirestore()
+
+	await firestore
+		.collection('comments')
+		.doc(id)
+		.delete()
+}
+
 export const deleteBlogPost = (
 	{ title, content, imageNames, images },
 	id
