@@ -60,6 +60,7 @@ class EditBlogPost extends React.Component {
 							</label>
 							<input
 								type='text'
+								maxLength='100'
 								value={this.state.title}
 								id='title'
 								onChange={this.handleChange}
@@ -71,6 +72,7 @@ class EditBlogPost extends React.Component {
 							</label>
 							<textarea
 								id='content'
+								maxLength='10000'
 								ref={this.textAreaRef}
 								value={this.state.content}
 								className='materialize-textarea'
@@ -80,7 +82,12 @@ class EditBlogPost extends React.Component {
 						<div className='file-field input-field'>
 							<div className='btn grey z-depth-0'>
 								<span>Images</span>
-								<input type='file' multiple onChange={this.uploadImages} />
+								<input
+									type='file'
+									accept='image/*'
+									multiple
+									onChange={this.uploadImages}
+								/>
 							</div>
 							<div className='file-path-wrapper'>
 								<input
@@ -91,6 +98,7 @@ class EditBlogPost extends React.Component {
 							</div>
 						</div>
 						<button
+							style={{ marginBottom: '4%' }}
 							className={`btn grey z-depth-0 right ${
 								!this.state.title ||
 								!this.state.content ||

@@ -33,7 +33,7 @@ const Footer = props => {
 	)
 }
 
-//Night mode togge
+//Night mode toggel
 /* <div className='col l6 s12'>
 <div className='switch right'>
 	<label className='white-text'>

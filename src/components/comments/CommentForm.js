@@ -25,12 +25,18 @@ class CommentForm extends React.Component {
 				</h6>
 				<div className='input-field'>
 					<label htmlFor='name'>Name</label>
-					<input type='text' id='name' onChange={this.handleChange} />
+					<input
+						type='text'
+						id='name'
+						maxLength='100'
+						onChange={this.handleChange}
+					/>
 				</div>
 				<div className='input-field'>
 					<label htmlFor='text'>Comment</label>
 					<textarea
 						id='text'
+						maxLength='1000'
 						className='materialize-textarea'
 						onChange={this.handleChange}
 					/>

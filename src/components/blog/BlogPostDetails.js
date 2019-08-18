@@ -57,6 +57,79 @@ class BlogPostDetails extends React.Component {
 		}
 	}
 
+	renderContentAndImages = ({ content, imageRefs }) => {
+		const maxLength = 2500
+		if (content.length > maxLength) {
+			let first = content.substring(0, maxLength)
+			first = first.substring(
+				0,
+				Math.min(first.length, first.lastIndexOf('\n'))
+			)
+
+			let second = content.substring(first.length, maxLength * 2)
+			second = second.substring(
+				0,
+				Math.min(second.length, second.lastIndexOf('\n'))
+			)
+
+			let third = content.substring(first.length + second.length, maxLength * 3)
+			third = third.substring(
+				0,
+				Math.min(third.length, third.lastIndexOf('\n'))
+			)
+
+			let fourth = content.substring(
+				first.length + second.length + third.length,
+				maxLength * 4 + 1
+			)
+			fourth = fourth.substring(
+				0,
+				Math.min(fourth.length, fourth.lastIndexOf('\n'))
+			)
+
+			return (
+				<>
+					{this.renderContent(first)}
+					{this.renderImage(imageRefs[1])}
+					{this.renderContent(second)}
+					{this.renderImage(imageRefs[2])}
+					{this.renderContent(third)}
+					{this.renderImage(imageRefs[3])}
+					{this.renderContent(fourth)}
+				</>
+			)
+		}
+		return (
+			<>
+				{this.renderContent(content)}
+				{this.renderImage(imageRefs[1])}
+			</>
+		)
+	}
+
+	renderContent = content => {
+		return <p style={{ whiteSpace: 'pre-wrap' }}>{content}</p>
+	}
+
+	renderImage = image => {
+		return (
+			<img
+				key={image}
+				style={{ marginTop: '4%' }}
+				className='responsive-img'
+				src={image}
+				alt=''
+			/>
+		)
+	}
+
+	moreImages = ({ imageRefs }) => {
+		const rest = imageRefs.slice(4)
+		return rest.map(image => {
+			return this.renderImage(image)
+		})
+	}
+
 	render() {
 		const { blogpost, id, comments, hearts } = this.props
 		return (
@@ -70,15 +143,8 @@ class BlogPostDetails extends React.Component {
 								<span className='card-title' style={{ marginTop: '2%' }}>
 									{blogpost.title}
 								</span>
-								<p style={{ whiteSpace: 'pre-wrap' }}>{blogpost.content}</p>
-								{blogpost.imageRefs[1] ? (
-									<img
-										style={{ marginTop: '4%' }}
-										className='responsive-img'
-										src={blogpost.imageRefs[1]}
-										alt=''
-									/>
-								) : null}
+								{this.renderContentAndImages(blogpost)}
+								{this.moreImages(blogpost)}
 								{this.showHeart()}
 								<button
 									onClick={this.showCommentForm}

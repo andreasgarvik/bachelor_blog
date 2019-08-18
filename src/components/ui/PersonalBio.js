@@ -72,6 +72,7 @@ class PersonalBio extends React.Component {
 								</label>
 								<input
 									type='text'
+									maxLength='100'
 									style={{ color: 'white' }}
 									id='title'
 									onChange={this.handleChange}
@@ -83,6 +84,7 @@ class PersonalBio extends React.Component {
 								</label>
 								<textarea
 									id='text'
+									maxLength='1000'
 									style={{ color: 'white' }}
 									className='materialize-textarea'
 									onChange={this.handleChange}

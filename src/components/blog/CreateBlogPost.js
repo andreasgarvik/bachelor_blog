@@ -38,20 +38,31 @@ class CreateBlogPost extends React.Component {
 						</h5>
 						<div className='input-field'>
 							<label htmlFor='title'>Title</label>
-							<input type='text' id='title' onChange={this.handleChange} />
+							<input
+								type='text'
+								id='title'
+								maxLength='100'
+								onChange={this.handleChange}
+							/>
 						</div>
 						<div className='input-field'>
 							<label htmlFor='content'>Content</label>
 							<textarea
 								id='content'
 								className='materialize-textarea'
+								maxLength='10000'
 								onChange={this.handleChange}
 							/>
 						</div>
 						<div className='file-field input-field'>
 							<div className='btn grey z-depth-0'>
 								<span>Images</span>
-								<input type='file' multiple onChange={this.uploadImages} />
+								<input
+									type='file'
+									accept='image/*'
+									multiple
+									onChange={this.uploadImages}
+								/>
 							</div>
 							<div className='file-path-wrapper'>
 								<input

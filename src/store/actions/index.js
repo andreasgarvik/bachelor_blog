@@ -1,3 +1,5 @@
+import uuid from 'uuid/v1'
+
 export const createNewBlogPost = ({ title, content, images }) => async (
 	dispatch,
 	getState,
@@ -11,8 +13,9 @@ export const createNewBlogPost = ({ title, content, images }) => async (
 	const imageNames = []
 
 	const imagePromises = Array.from(images).map(async image => {
-		const uploadTask = await storage.child(image.name).put(image)
-		imageNames.push(image.name)
+		const name = uuid() + '.jpg'
+		const uploadTask = await storage.child(name).put(image)
+		imageNames.push(name)
 		return await uploadTask.ref.getDownloadURL()
 	})
 
@@ -49,8 +52,9 @@ export const editBlogPost = (
 	const newImageNames = []
 
 	const newImagePromises = Array.from(images).map(async image => {
-		const uploadTask = await storage.child(image.name).put(image)
-		newImageNames.push(image.name)
+		const name = uuid() + '.jpg'
+		const uploadTask = await storage.child(name).put(image)
+		newImageNames.push(name)
 		return await uploadTask.ref.getDownloadURL()
 	})
 
