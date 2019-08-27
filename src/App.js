@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import HomeScreen from './components/ui/HomeScreen'
 import BlogPostDetails from './components/blog/BlogPostDetails'
 import BlogPostArchive from './components/blog/BlogPostArchive'
@@ -32,6 +32,7 @@ class App extends React.Component {
 									<Route path='/signin' component={SignIn} />
 									<Route path='/create' component={CreateBlogPost} />
 									<Route path='/edit/:id' component={EditBlogPost} />
+									<Redirect to='/' />
 								</Switch>
 							</div>
 						</div>
