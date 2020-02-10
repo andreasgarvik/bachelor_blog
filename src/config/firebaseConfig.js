@@ -1,17 +1,17 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth'
-import 'firebase/storage'
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
 
 var config = {
-	apiKey: 'AIzaSyBn_PEfCKoKlp-3nl6teyW0Q-D9ouvK-ks',
-	authDomain: 'siamawandersblog.firebaseapp.com',
-	databaseURL: 'https://siamawandersblog.firebaseio.com',
-	projectId: 'siamawandersblog',
-	storageBucket: 'siamawandersblog.appspot.com',
-	messagingSenderId: '1081176341485'
-}
+  apiKey: 'AIzaSyBiG95nhKFWry5QYJj41wBlh8TkdPXb4GY',
+  authDomain: 'bacheloroppgave-g18.firebaseapp.com',
+  databaseURL: 'https://bacheloroppgave-g18.firebaseio.com',
+  projectId: 'bacheloroppgave-g18',
+  storageBucket: 'bacheloroppgave-g18.appspot.com',
+  messagingSenderId: '103912223835'
+};
 
-firebase.initializeApp(config)
+firebase.initializeApp(config);
 
-export default firebase
+export default firebase;
