@@ -1,14 +1,14 @@
 import React from 'react';
-import instagram from '../../icons/instagram.png';
+//import instagram from '../../icons/instagram.png';
 
 const Footer = props => {
   return (
     <footer className='page-footer blue-grey lighten-2'>
       <div className='container'>
         <div className='row right'>
-          <a className='grey-text text-lighten-3' href='/'>
+          {/*<a className='grey-text text-lighten-3' href='/'>
             <img src={instagram} alt='' />
-          </a>
+          </a>*/}
         </div>
         <div className='row'>
           <h5>
@@ -23,7 +23,7 @@ const Footer = props => {
           © 2020 Created by Andreas Garvik
           <a
             className='grey-text text-lighten-4 right'
-            href='https://github.com/andreasgarvik'>
+            href='https://github.com/andreasgarvik/bachelor_blog'>
             Github
           </a>
         </div>
