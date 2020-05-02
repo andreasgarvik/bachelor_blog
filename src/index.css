@@ -44,16 +44,25 @@
 	.parallax-container {
 		height: 250px;
 	}
+	.card-image-resize {
+		max-height: 150px;
+	}
 }
 
 @media screen and (min-width: 700px) and (max-width: 800px) {
 	.parallax-container {
 		height: 300px;
 	}
+	.card-image-resize {
+		max-height: 190px;
+	}
 }
 @media screen and (min-width: 800px) and (max-width: 950px) {
 	.parallax-container {
 		height: 350px;
+	}
+	.card-image-resize {
+		max-height: 220px;
 	}
 }
 
@@ -61,35 +70,55 @@
 	.parallax-container {
 		height: 400px;
 	}
+	.card-image-resize {
+		max-height: 210px;
+	}
+
 }
 @media screen and (min-width: 1100px) and (max-width: 1200px) {
 	.parallax-container {
 		height: 450px;
 	}
-}
-
-@media screen and (min-width: 1200px) and (max-width: 1400px) {
-	.parallax-container {
-		height: 500px;
+	.card-image-resize {
+		max-height: 240px;
 	}
 }
 
-@media screen and (min-width: 1400px) and (max-width: 1600px) {
+@media screen and (min-width: 1200px) and (max-width: 1450px) {
+	.parallax-container {
+		height: 500px;
+	}
+	.card-image-resize {
+		max-height: 120px;
+	}
+}
+
+@media screen and (min-width: 1450px) and (max-width: 1600px) {
 	.parallax-container {
 		height: 550px;
+	}
+	.card-image-resize {
+		max-height: 150px;
 	}
 }
 @media screen and (min-width: 1600px) and (max-width: 1800px) {
 	.parallax-container {
 		height: 700px;
 	}
+	.card-image-resize {
+		max-height: 170px;
+	}
 }
 
-@media screen and (min-width: 1800px) and (max-width: 2160px) {
+@media screen and (min-width: 1800px) {
 	.parallax-container {
 		height: 700px;
 	}
+	.card-image-resize {
+		max-height: 180px;
+	}
 }
+
 
 .nav-wrapper {
 	z-index: 1;
