@@ -24,6 +24,7 @@ class BlogPost extends React.Component {
 								src={imageRefs[0]}
 								alt={imageNames[0]}
 								className='responsive-img'
+								style={{ maxHeight: '248px' }}
 							/>
 						</div>
 						<div className='card-content'>
